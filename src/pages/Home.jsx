@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Col, ListGroup, Row } from 'react-bootstrap';
+import { Card, CardGroup, Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Search from '../components/Search';
@@ -13,16 +13,14 @@ const Home = () => {
 
     const [categorys, setCategorys] = useState();
 
-
-
     useEffect(() => {
         dispatch(getProductsThunk())
 
         axios.get(`https://e-commerce-api.academlo.tech/api/v1/products/categories`)
-        .then(res => setCategorys(res.data.data.categories))
+            .then(res => setCategorys(res.data.data.categories))
     }, [])
     return (
-        <div>
+        <Container >
             <Search />
             <Row>
                 {/* Categorias glosario */}
@@ -30,31 +28,47 @@ const Home = () => {
                     <ListGroup>
                         {
                             categorys?.map(category => (
-                                <ListGroup.Item key={category.id} onClick={() => dispatch(filterThunk(category.id))} >
+                                <ListGroup.Item
+                                    key={category.id}
+                                    onClick={() => dispatch(filterThunk(category.id))}
+                                    style={{ cursor: 'pointer' }}
+                                >
                                     {category.name}
                                 </ListGroup.Item>
                             ))
                         }
                     </ListGroup>
                 </Col>
-
+                
                 {/* Productos */}
                 <Col lg={9}>
-                    {
-                        products.map(product => (
-                            <ul key={product.id}>
-                                <Link to={`/product/${product.id}`}>
-                                    {product.title}
-                                    <img src={product.productImgs[0]} alt={product.title} />
-                                </Link>
-                            </ul>
-                        ))
-                    }
+                    <Row xs={1} md={2} lg={3} className="g-4">
+                        {
+                            products.map(product => (
+                                <CardGroup>
+                                    <Card>
+                                        <Link to={`/product/${product.id}`}>
+                                            <Card.Img 
+                                                variant="top" 
+                                                src={product.productImgs[0]} 
+                                                style={{width: 150, objectFit: 'contain'}}    
+                                            />
+                                            <Card.Body>
+                                                <Card.Title>{product.title}</Card.Title>
+                                            </Card.Body>
+                                            <Card.Footer>
+                                                <small className="text-muted">{product.price}</small>
+                                            </Card.Footer>
+                                        </Link>
+                                    </Card>
+                                </CardGroup>
+                            ))
+                        }
+                    </Row>
+                    
                 </Col>
             </Row>
-
-
-        </div>
+        </Container>
     );
 };
 

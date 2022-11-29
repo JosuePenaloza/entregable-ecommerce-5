@@ -12,7 +12,7 @@ const Search = () => {
         <div>
             <InputGroup className="mb-3">
             <Form.Control
-              placeholder="Recipient's username"
+              placeholder="Product"
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={inputSearch}
@@ -22,7 +22,7 @@ const Search = () => {
               variant="outline-secondary"
               onClick={() => dispatch(filterSearchThunk(inputSearch))}
             >
-              Search
+              <i class="fa-solid fa-magnifying-glass"></i>
             </Button>
           </InputGroup>
         </div>
@@ -30,3 +30,4 @@ const Search = () => {
 };
 
 export default Search;
+

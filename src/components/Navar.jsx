@@ -9,7 +9,7 @@ const Navar = () => {
 
     return (
         <Navbar bg="light" expand="lg">
-            <Container>
+            <Container >
                 <Navbar.Brand as={Link} to='/'  >Ecommerce</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
