@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Search from '../components/Search';
 import { filterThunk, getProductsThunk } from '../store/slice/data.slice';
 
 const Home = () => {
@@ -22,6 +23,7 @@ const Home = () => {
     }, [])
     return (
         <div>
+            <Search />
             <Row>
                 {/* Categorias glosario */}
                 <Col lg={3} >
