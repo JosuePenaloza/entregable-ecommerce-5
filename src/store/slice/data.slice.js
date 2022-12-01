@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setIsloading } from './isLoading.slice';
-
+import Swal from 'sweetalert2'
 
 
 // Cambiamos mySlice por el nombre de nuestro slice (usersSlice, toDosSlice...)
@@ -34,10 +34,20 @@ export const filterThunk = (id) => (dispatch) => {
 export const filterSearchThunk = (inputSearch) => (dispatch) =>{
     dispatch(setIsloading(true));
     axios.get(`https://e-commerce-api.academlo.tech/api/v1/products?query=${inputSearch}`)
-    .then(res => dispatch(setData(res.data.data.products)))
+    .then(res => {
+        if(res.data = []){
+            Swal.fire({
+                icon: 'error',
+                title: 'Not exist',
+                timer: 1500
+              })
+        }else{
+            dispatch(setData(res.data.data.products))
+        }
+    } )
     .catch(error => {
         if(error.response?.status === 404) {
-            alert('no existe')
+            console.log('?',error.response?.data)
         }else {
             console.log(error.response?.data)
         }

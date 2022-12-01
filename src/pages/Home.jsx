@@ -20,11 +20,11 @@ const Home = () => {
             .then(res => setCategorys(res.data.data.categories))
     }, [])
     return (
-        <Container >
+        <>
             <Search />
             <Row>
                 {/* Categorias glosario */}
-                <Col lg={3} >
+                <Col lg={3} style={{padding: '10px'}} >
                     <ListGroup>
                         {
                             categorys?.map(category => (
@@ -63,17 +63,13 @@ const Home = () => {
                                                 </Card.Footer>
                                             </Link>
                                         </Card>
-                                    </CardGroup>
-
-                                   
+                                    </CardGroup>                    
                             ))
-
                         }
                     </Row>
-
                 </Col>
             </Row>
-        </Container>
+        </>                 
     );
 };
 

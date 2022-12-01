@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import {  Offcanvas } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
@@ -14,9 +12,9 @@ const Navar = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Navbar bg="light" expand="lg">
-                <Container >
-                    <Navbar.Brand as={Link} to='/'  >Ecommerce</Navbar.Brand>
+            <Navbar bg="light" expand="lg" style={{padding: '10px'}}>
+
+                    <Navbar.Brand as={Link} to='/'  ><i className="fa-brands fa-shopify"></i> Ecommerce</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -25,7 +23,7 @@ const Navar = () => {
                             <Nav.Link onClick={handleShow} ><i className="fa-solid fa-cart-shopping"></i></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
+
             </Navbar>
             <Car show={show} handleClose={handleClose} />
         </>

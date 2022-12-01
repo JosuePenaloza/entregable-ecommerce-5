@@ -45,13 +45,14 @@ const ProductDetail = () => {
     return (
         <div>
             <Row>
-                <Col lg={9}>
+                <Col lg={9} className='ProductDetail'>
                     <Carousel fade>
                         <Carousel.Item>
                             <img
                                 className="img-fluid"
                                 src={selectProduct?.productImgs[0]}
                                 alt="First slide"
+                                style={{aspectRatio: 3/2}}
 
                             />
 
@@ -61,7 +62,7 @@ const ProductDetail = () => {
                                 className="img-fluid"
                                 src={selectProduct?.productImgs[1]}
                                 alt="Second slide"
-
+                                style={{aspectRatio: 3/2}}
 
                             />
                         </Carousel.Item>
@@ -70,7 +71,7 @@ const ProductDetail = () => {
                                 className="img-fluid"
                                 src={selectProduct?.productImgs[2]}
                                 alt="Third slide"
-
+                                style={{aspectRatio: 3/2}}
                             />
                         </Carousel.Item>
                     </Carousel>
@@ -112,7 +113,7 @@ const ProductDetail = () => {
                                             <Card.Text>
 
                                             </Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
+                                            <Button variant="primary">Go</Button>
                                         </Card.Body>
                                     </Card>
                                 </Link>

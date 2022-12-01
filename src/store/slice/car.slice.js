@@ -50,6 +50,15 @@ return axios
     .finally(() => dispatch(setIsloading(false)));
 };
 
+export const deleteCart = (id) => (dispatch) => {
+    dispatch(setIsloading(true));
+    return axios
+        .delete(`https://e-commerce-api.academlo.tech/api/v1/cart/${id}`, getConfig())
+        .then((res) => dispatch(getCarThunk())
+     )
+        .finally(() => dispatch(setIsloading(false)));
+    };
+    
   
 
 export const { setCar } = carSlice.actions;

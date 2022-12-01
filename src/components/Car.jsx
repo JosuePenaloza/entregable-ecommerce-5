@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Offcanvas, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { buyCart, getCarThunk } from '../store/slice/car.slice';
+import { buyCart, deleteCart, getCarThunk } from '../store/slice/car.slice';
 import Swal from 'sweetalert2'
 
 const Car = ({ show, handleClose }) => {
@@ -37,10 +37,15 @@ const Car = ({ show, handleClose }) => {
           })
     }
 
+    const cartDelete = (id) => {
+        console.log('pruebadelete', id)
+        dispatch(deleteCart(id))
+    }
+
     return (
         <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Car</Offcanvas.Title>
+                <Offcanvas.Title><i className="fa-solid fa-cart-arrow-down"></i></Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
                 {
@@ -62,7 +67,13 @@ const Car = ({ show, handleClose }) => {
 
                                 <Modal.Footer>
                                     <h4>${product.price}</h4>
-                                    <Button variant="secondary">Close</Button>
+                                    <Button 
+                                     variant="secondary" 
+                                     onClick={() => cartDelete(product.id)}
+                                     style={{color: 'red'}}
+                                    >
+                                        <i className="fa-solid fa-trash" ></i>
+                                    </Button>
                                 </Modal.Footer>
                             </Modal.Dialog>
                         </div>
