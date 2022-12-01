@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Offcanvas, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { buyCart, getCarThunk } from '../store/slice/car.slice';
+import Swal from 'sweetalert2'
 
 const Car = ({ show, handleClose }) => {
 
@@ -14,6 +15,27 @@ const Car = ({ show, handleClose }) => {
     }, [])
 
     const car = useSelector(state => state.car);
+
+    const handled = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                dispatch(buyCart())
+            }
+          })
+    }
 
     return (
         <Offcanvas show={show} onHide={handleClose}>
@@ -47,7 +69,7 @@ const Car = ({ show, handleClose }) => {
                     ))
                 }
             </Offcanvas.Body>
-            <Button variant="primary" onClick={() => dispatch(buyCart())}>Save changes</Button>
+            <Button variant="primary" onClick={() => handled()}>Save changes</Button>
         </Offcanvas>
     );
 };

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import getConfig from "../../utils/getConfig";
 import { setIsloading } from "./isLoading.slice";
-
+import Swal from 'sweetalert2'
 export const carSlice = createSlice({
   name: "car",
   initialState: [],
@@ -26,7 +26,18 @@ export const getNewCar = (newsProdcut) => (dispatch) => {
     return axios
       .post("https://e-commerce-api.academlo.tech/api/v1/cart",newsProdcut, getConfig())
       .then((res) => dispatch(getCarThunk()))
-      .catch(error => error.status.data)
+      .catch(error => {
+        if(error.response?.status === 404) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                
+                
+              })
+        }else{
+            console.log(error.response?.data)
+        }
+    })
       .finally(() => dispatch(setIsloading(false)));
   };
 
@@ -34,7 +45,8 @@ export const buyCart = () => (dispatch) => {
 dispatch(setIsloading(true));
 return axios
     .post("https://e-commerce-api.academlo.tech/api/v1/purchases",{}, getConfig())
-    .then((res) => dispatch(setCar({})))
+    .then((res) => dispatch(setCar({}))
+ )
     .finally(() => dispatch(setIsloading(false)));
 };
 

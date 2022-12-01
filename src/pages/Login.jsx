@@ -2,7 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const Login = () => {
@@ -12,12 +13,34 @@ const Login = () => {
     const submit = (data) => {
         axios.post(`https://e-commerce-api.academlo.tech/api/v1/users/login`,data)
         .then(res => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Signed in successfully'
+              })
+
             navigate('/purchases')
             localStorage.setItem('token', res.data.data.token)
         } )
         .catch(error => {
             if(error.response?.status === 404) {
-                alert('error')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Invalid credentials',
+                    timer: 2500
+                  })
             }else{
                 console.log(error.response?.data)
             }

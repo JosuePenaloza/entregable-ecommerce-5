@@ -50,6 +50,7 @@ const Home = () => {
                                         <Card>
                                             <Link to={`/product/${product.id}`}>
                                                 <Card.Img
+                                                    className="img-fluid"
                                                     variant="top"
                                                     src={product.productImgs[0]}
                                                     style={{ width: 150, objectFit: 'contain' }}
