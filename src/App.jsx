@@ -7,9 +7,9 @@ import Navar from './components/Navar'
 import Looading from './components/Looading'
 import { Container } from 'react-bootstrap'
 import Login from './pages/Login'
-import Cart from './pages/Cart'
 import Purchases from './pages/Purchases'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import Car from './components/Car'
 
 function App() {
 
@@ -27,13 +27,12 @@ function App() {
             <Route path='/login' element={<Login />} />
 
             <Route element={<ProtectedRoutes />} > 
-              <Route path='/cart' element={<Cart />} />
+              <Route element={<Car />} />
               <Route path='/purchases' element={<Purchases />} />
             </Route>
 
           </Routes>
         </Container>
-        
       </HashRouter>
     </div>
   )

@@ -19,61 +19,27 @@ const Purchases = () => {
                 purchases.map(purchase => (
                     <Table striped bordered hover key={purchase.id}>
                         <thead>
- 
+
                             <tr>
                                 <th>Brand</th>
-                                <th>Name</th>
+                                <th>Model</th>
                                 <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            
-                                    {
-                                        purchase.cart?.products.map(product => (
-                                            
-                                            <tr key={product.id}>
-                                                <td>{product.brand}</td>
-                                                <td>{product.title}</td>
-                                                <td>{product.price}</td>
-                                            </tr>
-                                            
-
-                                        ))
-                                    }
-                           
-
-                                {/* <td>
-                                    {
-
-                                        purchase.cart?.products.map(product => (
-
-                                            <p>{product.title}</p>
 
 
-                                        ))
-                                    }
-                                </td>
+                            {
+                                purchase.cart?.products.map(product => (
 
-                                <td>
-                                    {
-
-                                        purchase.cart?.products.map(product => (
-
-                                            <p>{product.brand}</p>
-
-
-                                        ))
-                                    }
-                                </td> */}
-                           
-
-
-
+                                    <tr key={product.id}>
+                                        <td>{product.brand}</td>
+                                        <td>{product.title}</td>
+                                        <td>{product.price} x {product.productsInCart.quantity}</td>
+                                    </tr>
+                                ))
+                            }
                         </tbody>
-
-
-
                     </Table>
                 ))
             }

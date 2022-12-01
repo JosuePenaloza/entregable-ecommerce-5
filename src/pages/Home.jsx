@@ -39,33 +39,37 @@ const Home = () => {
                         }
                     </ListGroup>
                 </Col>
-                
+
                 {/* Productos */}
                 <Col lg={9}>
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {
                             products.map(product => (
-                                <CardGroup>
-                                    <Card>
-                                        <Link to={`/product/${product.id}`}>
-                                            <Card.Img 
-                                                variant="top" 
-                                                src={product.productImgs[0]} 
-                                                style={{width: 150, objectFit: 'contain'}}    
-                                            />
-                                            <Card.Body>
-                                                <Card.Title>{product.title}</Card.Title>
-                                            </Card.Body>
-                                            <Card.Footer>
-                                                <small className="text-muted">{product.price}</small>
-                                            </Card.Footer>
-                                        </Link>
-                                    </Card>
-                                </CardGroup>
+
+                                    <CardGroup key={product.id}>
+                                        <Card>
+                                            <Link to={`/product/${product.id}`}>
+                                                <Card.Img
+                                                    variant="top"
+                                                    src={product.productImgs[0]}
+                                                    style={{ width: 150, objectFit: 'contain' }}
+                                                />
+                                                <Card.Body>
+                                                    <Card.Title>{product.title}</Card.Title>
+                                                </Card.Body>
+                                                <Card.Footer>
+                                                    <small className="text-muted">{product.price}</small>
+                                                </Card.Footer>
+                                            </Link>
+                                        </Card>
+                                    </CardGroup>
+
+                                   
                             ))
+
                         }
                     </Row>
-                    
+
                 </Col>
             </Row>
         </Container>
@@ -73,3 +77,30 @@ const Home = () => {
 };
 
 export default Home;
+
+ {/* <Card style={{ width: '18rem' }}>
+                                    <Link to={`/product/${product.id}`}>
+                                        <Card.Img variant="top" src={product.productImgs[0]} style={{ width: 150, objectFit: 'contain' }} />
+                                        <Card.Body>
+                                            <Card.Title>{product.title}</Card.Title>
+                                            <Card.Text>
+                                            {product.price}
+                                            </Card.Text>
+                                        </Card.Body>
+                                        <ListGroup className="list-group-flush">
+                                            <ListGroup.Item>{product.price}</ListGroup.Item>
+                                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                                        </ListGroup>
+                                        </Link>
+                                    </Card> */}
+
+
+                                    {/* <Card>
+                                        <Card.Img variant="top" src={product.productImgs[0]} />
+                                        <Card.Body>
+                                            <Card.Text>
+                                            {product.title}
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card> */}
