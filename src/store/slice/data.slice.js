@@ -10,6 +10,11 @@ export const dataSlice = createSlice({
     reducers: {
         setData: (state, action) => {
             return action.payload
+        },
+
+        filterPrices: (state, action) => {
+            const {priceMax, priceMin} = action.payload
+            return state.filter(product => product.price > priceMin && product.price < priceMax)
         }
     }
 })
@@ -61,6 +66,6 @@ export const filterSearchThunk = (inputSearch,setInputSearch) => (dispatch) =>{
 
 
 
-export const { setData } = dataSlice.actions;
+export const { setData, filterPrices } = dataSlice.actions;
 
 export default dataSlice.reducer;

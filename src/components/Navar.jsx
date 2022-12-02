@@ -37,7 +37,7 @@ const Navar = () => {
         <>
             <Navbar bg="light" expand="lg" style={{padding: '10px'}}>
 
-                    <Navbar.Brand style={{ cursor: 'pointer' }} onClick={handledHome}  ><i className="fa-brands fa-shopify"></i> Ecommerce</Navbar.Brand>
+                    <Navbar.Brand style={{ cursor: 'pointer' }} onClick={handledHome}  ><i className="fa-brands fa-shopify"></i> E-commerce</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

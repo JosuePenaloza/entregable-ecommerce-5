@@ -10,6 +10,13 @@ const Purchases = () => {
         dispatch(getPurchasesThunk());
     }, [])
 
+    ////////////fecha //////////
+    const getFormateData = (dateString) => {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
     const purchases = useSelector(state => state.purchases)
     return (
         <div>
@@ -17,7 +24,10 @@ const Purchases = () => {
             <h2>purchases </h2>
             {
                 purchases.map(purchase => (
-                    <Table striped bordered hover key={purchase.id}>
+                    <div key={purchase.id}>
+                    <b>{getFormateData(purchase.createdAt)}</b>
+                    <Table striped bordered hover >
+                        
                         <thead>
                             <tr>
                                 <th>Brand</th>
@@ -26,6 +36,7 @@ const Purchases = () => {
                                 <th>Amount</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             {
                                 purchase.cart?.products.map(product => (
@@ -35,11 +46,14 @@ const Purchases = () => {
                                         <td>{product.title}</td>
                                         <td>{product.price}</td>
                                         <td>{product.productsInCart.quantity}</td>
+                                        
                                     </tr>
+                                    
                                 ))
                             }
                         </tbody>
                     </Table>
+                    </div>
                 ))
             }
         </div>

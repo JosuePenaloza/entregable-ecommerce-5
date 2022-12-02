@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Offcanvas, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { buyCart, deleteCart, getCarThunk } from '../store/slice/car.slice';
@@ -16,6 +16,20 @@ const Car = ({ show, handleClose }) => {
 
     const car = useSelector(state => state.car);
 
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        let total = 0;
+        car.products?.forEach((product) => {
+            total += product.price * product.productsInCart.quantity;
+        });
+        setTotalPrice(total);
+    }, [car])
+
+    //console.log('me renderizo')
+
+    
+
     const handled = () => {
         Swal.fire({
             title: 'Are you sure?',
@@ -32,7 +46,7 @@ const Car = ({ show, handleClose }) => {
                     'Your file has been deleted.',
                     'success'
                 )
-                dispatch(buyCart())
+                dispatch(buyCart());
             }
           })
     }
@@ -80,7 +94,9 @@ const Car = ({ show, handleClose }) => {
                     ))
                 }
             </Offcanvas.Body>
-            <Button disabled={car?.length == 0} variant="primary" onClick={() => handled()}>Save changes</Button>
+            <br />
+            <h4>Total: ${totalPrice}</h4>
+            <Button disabled={totalPrice == 0} variant="primary" onClick={() => handled()}>Save changes</Button>
         </Offcanvas>
     );
 };

@@ -3,7 +3,6 @@ import axios from "axios";
 import getConfig from "../../utils/getConfig";
 import { setIsloading } from "./isLoading.slice";
 import Swal from 'sweetalert2'
-import { useNavigate } from "react-router-dom";
 export const carSlice = createSlice({
   name: "car",
   initialState: [],
@@ -24,7 +23,6 @@ export const getCarThunk = () => (dispatch) => {
 
 export const getNewCar = (newsProdcut) => (dispatch) => {
 
-  //const navigate = useNavigate();
     dispatch(setIsloading(true));
     return axios
       .post("https://e-commerce-api.academlo.tech/api/v1/cart",newsProdcut, getConfig())
@@ -35,7 +33,6 @@ export const getNewCar = (newsProdcut) => (dispatch) => {
                 icon: 'error',
                 title: 'Oops...',   
               })
-              //navigate('/login')
         }else{
             console.log(error.response?.data)
         }
