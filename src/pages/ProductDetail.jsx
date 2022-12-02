@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Carousel, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { getNewCar } from '../store/slice/car.slice';
 import { getProductsThunk } from '../store/slice/data.slice';
@@ -10,6 +10,7 @@ const ProductDetail = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [amount, setAmount] = useState(0);
 
     useEffect(() => {
@@ -26,19 +27,24 @@ const ProductDetail = () => {
     ))
 
     const addAmount = () => {
-        setAmount(amount == 0)
-        const newsProdcut = {
-            "id": selectProduct.id,
-            "quantity": amount
+        const token = localStorage.getItem("token");
+        if(token){
+            setAmount(amount == 0)
+            const newsProdcut = {
+                "id": selectProduct.id,
+                "quantity": amount
+            }
+            dispatch(getNewCar(newsProdcut));
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        } else {
+            navigate("/login")
         }
-        dispatch(getNewCar(newsProdcut));
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500,
-        })
 
     }
 

@@ -4,7 +4,6 @@ import { setIsloading } from './isLoading.slice';
 import Swal from 'sweetalert2'
 
 
-// Cambiamos mySlice por el nombre de nuestro slice (usersSlice, toDosSlice...)
 export const dataSlice = createSlice({
 		name: 'data',
     initialState: [],
@@ -15,6 +14,7 @@ export const dataSlice = createSlice({
     }
 })
 
+//productos en general
 export const getProductsThunk = () => (dispatch) => {
     dispatch(setIsloading(true));
     axios
@@ -23,6 +23,8 @@ export const getProductsThunk = () => (dispatch) => {
         .finally(() => dispatch(setIsloading(false)))
 }
 
+
+//producto en especifico
 export const filterThunk = (id) => (dispatch) => {
     dispatch(setIsloading(true));
     axios
@@ -31,7 +33,8 @@ export const filterThunk = (id) => (dispatch) => {
         .finally(() => dispatch(setIsloading(false)))
 }
 
-export const filterSearchThunk = (inputSearch) => (dispatch) =>{
+//Buscador de producto
+export const filterSearchThunk = (inputSearch,setInputSearch) => (dispatch) =>{
     dispatch(setIsloading(true));
     axios.get(`https://e-commerce-api.academlo.tech/api/v1/products?query=${inputSearch}`)
     .then(res => {
@@ -41,6 +44,7 @@ export const filterSearchThunk = (inputSearch) => (dispatch) =>{
                 title: 'Not exist',
                 timer: 1500
               })
+              setInputSearch(inputSearch = '')
         }else{
             dispatch(setData(res.data.data.products))
         }

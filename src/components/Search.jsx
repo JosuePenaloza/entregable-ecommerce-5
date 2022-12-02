@@ -20,7 +20,7 @@ const Search = () => {
             />
             <Button
               variant="outline-secondary"
-              onClick={() => dispatch(filterSearchThunk(inputSearch))}
+              onClick={() => dispatch(filterSearchThunk(inputSearch,setInputSearch))}
             >
               <i className="fa-solid fa-magnifying-glass"></i>
             </Button>
