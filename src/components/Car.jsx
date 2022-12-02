@@ -80,7 +80,7 @@ const Car = ({ show, handleClose }) => {
                     ))
                 }
             </Offcanvas.Body>
-            <Button  variant="primary" onClick={() => handled()}>Save changes</Button>
+            <Button disabled={car?.length == 0} variant="primary" onClick={() => handled()}>Save changes</Button>
         </Offcanvas>
     );
 };

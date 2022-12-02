@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { getProductsThunk } from '../store/slice/data.slice';
 import Car from './Car'
 
@@ -19,7 +20,12 @@ const Navar = () => {
         if(token){
             setShow(true);
         }else {
-            alert("Tienes que hacer login")
+            Swal.fire({
+                icon: 'error',
+                title: 'You need to login',
+                timer: 3500,
+                footer: '<a href="#/login">Login</a>',
+            })
         }
     }
 
