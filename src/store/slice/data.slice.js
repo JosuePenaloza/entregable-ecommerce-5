@@ -14,6 +14,7 @@ export const dataSlice = createSlice({
 
         filterPrices: (state, action) => {
             const {priceMax, priceMin} = action.payload
+            console.log('$', priceMax, priceMin)
             return state.filter(product => product.price > priceMin && product.price < priceMax)
         }
     }

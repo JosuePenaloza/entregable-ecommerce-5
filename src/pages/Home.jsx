@@ -4,7 +4,7 @@ import { Accordion, Button, Card, CardGroup, Col, Container, Form, ListGroup, Ro
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Search from '../components/Search';
-import { filterThunk, getProductsThunk } from '../store/slice/data.slice';
+import { filterPrices, filterThunk, getProductsThunk } from '../store/slice/data.slice';
 
 const Home = () => {
 
@@ -25,6 +25,7 @@ const Home = () => {
 
     const [priceMin, setPriceMin] = useState('');
     const [priceMax, setPriceMax] = useState('');
+    
 
     return (
         <>
@@ -80,7 +81,7 @@ const Home = () => {
                                          type='submit' 
                                          disabled={priceMax == 0 && priceMin == 0}
                                          style={{ marginLeft: '10px' }}
-                                         onClick={() => dispatch(filterThunk({priceMax,priceMin}))}
+                                         onClick={() => dispatch(filterPrices({priceMax,priceMin}))}
                                             >
                                             Submit
                                             </Button>

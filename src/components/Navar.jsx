@@ -42,6 +42,7 @@ const Navar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to='/login' >Login</Nav.Link>
+                            <Nav.Link as={Link} to='/create' >Create</Nav.Link>
                             <Nav.Link as={Link} to='/purchases' >Puchases</Nav.Link>
                             <Nav.Link onClick={handleShow} ><i className="fa-solid fa-cart-shopping"></i></Nav.Link>
                         </Nav>

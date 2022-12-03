@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Purchases from './pages/Purchases'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import Car from './components/Car'
+import SignUp from './pages/SignUp'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/' element={<Home/>} />
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/create' element={<SignUp />} />
 
             <Route element={<ProtectedRoutes />} > 
               <Route element={<Car />} />

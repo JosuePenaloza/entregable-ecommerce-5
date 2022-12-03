@@ -1,41 +1,102 @@
 import React from 'react';
-import { Button,Form } from 'react-bootstrap';
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 
 const SignUp = () => {
-    return (
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" placeholder="First Name" />
-            </Form.Group>
+  const { register, handleSubmit } = useForm();
 
-            <Form.Group className="mb-3" >
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" placeholder="Last Name" />
-            </Form.Group>
+  const userNew = (data) => {
+    dataUser = {
+      data
+  }
 
-            <Form.Group className="mb-3" controlId="">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="text" placeholder="Password" />
-            </Form.Group>
+  console.log(dataUser)
+  }
+  return (
+    <Row>
+      <Card border="secondary" >
+        <i className="fa-solid fa-user-plus"></i>
+        <Card.Body onSubmit={handleSubmit(userNew)}>
+          
+          <Row>
+            <Form.Label column="lg" lg={2}>
 
-            <Form.Group className="mb-3" >
-                <Form.Label>Phone (10 characters)</Form.Label>
-                <Form.Control type="password" placeholder="Phone (10 characters)" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
-    );
+              
+
+            </Form.Label>
+            <Col>
+              <Form.Control 
+               type="email" 
+               placeholder="Enter email" 
+               required 
+               {...register("email")} 
+              />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Form.Label column lg={2}>
+
+            </Form.Label>
+            <Col>
+              <Form.Control 
+               type="text" 
+               placeholder="First Name" 
+               required 
+               {...register("firstName")}
+               />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Form.Label column lg={2}>
+
+            </Form.Label>
+            <Col>
+              <Form.Control 
+               type="text"  
+               placeholder="Last Name" 
+                required 
+                {...register("lastName")}
+                />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Form.Label column lg={2}>
+
+            </Form.Label>
+            <Col>
+              <Form.Control 
+               type="password" 
+               placeholder="password" 
+               required 
+               {...register("password")}
+               />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Form.Label column lg={2}>
+
+            </Form.Label>
+            <Col>
+              <Form.Control 
+               type="tel" 
+               placeholder="Phone (10 characters)" 
+               required 
+               {...register("phone")} 
+               />
+            </Col>
+          </Row>
+        </Card.Body>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Card>
+    </Row>
+  );
 };
 
 export default SignUp;
