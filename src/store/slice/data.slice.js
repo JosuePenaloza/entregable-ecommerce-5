@@ -16,6 +16,11 @@ export const dataSlice = createSlice({
             const {priceMax, priceMin} = action.payload
             console.log('$', priceMax, priceMin)
             return state.filter(product => product.price > priceMin && product.price < priceMax)
+        },
+
+        filterName: (state, action) => {
+            const inputSearch = action.payload;
+            return state.filter(product => product.title.toLowerCase().includes(inputSearch.toLowerCase()))
         }
     }
 })
@@ -42,31 +47,25 @@ export const filterThunk = (id) => (dispatch) => {
 //Buscador de producto
 export const filterSearchThunk = (inputSearch,setInputSearch) => (dispatch) =>{
     dispatch(setIsloading(true));
+    
     axios.get(`https://e-commerce-api.academlo.tech/api/v1/products?query=${inputSearch}`)
     .then(res => {
-        if(res.data = []){
-            Swal.fire({
-                icon: 'error',
-                title: 'Not exist',
-                timer: 1500
-              })
-              setInputSearch(inputSearch = '')
-        }else{
-            dispatch(setData(res.data.data.products))
-        }
-    } )
-    .catch(error => {
-        if(error.response?.status === 404) {
-            console.log('?',error.response?.data)
-        }else {
-            console.log(error.response?.data)
-        }
+        dispatch(setData(res.data.data.products));
+        setInputSearch('');       
     })
+    .catch(error =>  console.log('?',error.response?.data))
     .finally(() => dispatch(setIsloading(false)))
 }
 
 
 
-export const { setData, filterPrices } = dataSlice.actions;
+export const { setData, filterPrices, filterName } = dataSlice.actions;
 
 export default dataSlice.reducer;
+
+// Swal.fire({
+//     icon: 'error',
+//     title: 'Not exist',
+//     timer: 1500
+//   })
+//   setInputSearch(inputSearch = '')

@@ -13,7 +13,7 @@ const Search = () => {
             <InputGroup className="mb-3">
             <Form.Control
               placeholder="Product"
-              aria-label="Recipient's username"
+              aria-label="Product"
               aria-describedby="basic-addon2"
               value={inputSearch}
               onChange={(e) => setInputSearch(e.target.value)}
